@@ -31,7 +31,21 @@ class News extends CI_Controller {
     }
 
     public function nlist(){
+        if(isset($_POST['search']) && !empty($_POST['search'])){
+            $keyword = $_POST['search'];
+            $this -> db -> like('title',$keyword)
+                        -> or_like('content',$keyword);
+        }
         $data = $this -> db -> get('news') -> result_array();
+        //对关键字进行高亮处理
+        if(isset($keyword) && !empty($data)){
+            foreach($data as $k=>$v){
+                $replacement = '<span style="background:greenyellow">'.$keyword.'</span>';
+                $data[$k]['title'] = preg_replace("/$keyword/",$replacement,$v['title']);
+                $data[$k]['content'] = preg_replace("/$keyword/",$replacement,$v['content']);
+
+            }
+        }
         //对结果进行排序，时间最近的在最前面(正常录入无需此步)
         usort($data, function($a, $b) {
             if ($a['createtime'] == $b['createtime']) return 0;
@@ -53,4 +67,6 @@ class News extends CI_Controller {
         //var_dump($mdata);die;
         $this -> load -> view('admin/list',array('ddata'=>$ddata,'mdata'=>$mdata));
     }
+
+
 }

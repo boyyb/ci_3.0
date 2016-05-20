@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>新闻列表</title>
+    <link type="text/css" href="/CI-3.0.6/Public/css/style.css" rel="stylesheet"/>
     <style>
         table{ border:0;border-collapse:collapse;width:640px;}
         tr{ border:1px solid #333;}
@@ -30,11 +31,22 @@
                        .toggle();  // 隐藏/显示所谓的子行，toggle()方法切换元素的可见状态。
                 
             });
+            $('#search_btn').click(function(){
+                $('#form').attr('action','nlist')
+                          .attr('method','post')
+                          .submit();
+            });
         })
     </script>
 </head>
 <body>
 <a href="add">添加</a>
+<form id="form">
+    <div class="search">
+        <input class="search_input" id="search_input" name="search" placeholder="请输入搜索内容" type="text">
+        <input class="search_btn" id="search_btn" type="button">
+    </div>
+</form>
 <table>
     <tr><th class="num">序号</th>
         <th class="v">标题</th>
