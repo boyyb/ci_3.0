@@ -41,10 +41,10 @@
 </head>
 <body>
 <a href="add">添加</a>
-<form id="form">
+<form id="form" >
     <div class="search">
         <input class="search_input" id="search_input" name="search" placeholder="请输入搜索内容" type="text">
-        <input class="search_btn" id="search_btn" type="button">
+        <input class="search_btn" id="search_btn" type="button"  >
     </div>
 </form>
 <table>
