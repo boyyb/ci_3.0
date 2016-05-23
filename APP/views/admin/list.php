@@ -22,7 +22,7 @@
         }
     </style>
     <!--   引入jQuery -->
-    <script src="http://www.codefans.net/ajaxjs/jquery1.3.2.js" type="text/javascript"></script>
+    <script src="/CI-3.0.6/Public/js/jquery-2.2.4.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function(){
             $('tr.parent').click(function(){   // 获取所谓的父行并触发点击事件
@@ -47,10 +47,10 @@
         <input class="search_btn" id="search_btn" type="button">
     </div>
 </form>
-<form id="form" action="nlist" method="get">
+<form action="nlist" method="get">
     <div class="search">
-        <input class="search_input" id="search_input1" name="search_time" placeholder="请输入搜索日期(xxxx-xx-xx)" type="text">
-        <input class="search_btn" id="search_btn1" type="submit" value="">
+        <input class="search_input" name="search_time" placeholder="请输入搜索日期(xxxx-xx-xx)" type="text">
+        <input class="search_btn"  type="submit" value="">
     </div>
 </form>
 <table>
