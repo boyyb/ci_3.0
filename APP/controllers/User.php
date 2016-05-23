@@ -107,7 +107,7 @@ class User extends CI_Controller {
 		$per_page = 20;//每页显示条数
 		$this -> load -> library('pagination');//加载分页类
 		//配置分页相关参数
-		$config['base_url'] = "http://127.0.0.1/CI_3.0.6/user/userlist/page/";
+		$config['base_url'] = "http://127.0.0.1/CI-3.0.6/user/userlist/page/";
 		$config['total_rows'] = $total_rows;
 		$config['per_page'] = $per_page;
 		$config['first_link'] = '首页'; // 第一页显示
@@ -167,7 +167,7 @@ class User extends CI_Controller {
 		$this -> load -> library('pagination');//加载分页类
 		//配置分页相关参数
 		$config['reuse_query_string'] = TRUE;//将查询字符串参数添加到 URI 分段的后面
-		$config['base_url'] = "http://127.0.0.1/CI_3.0.6/user/search/page";
+		$config['base_url'] = "http://127.0.0.1/CI-3.0.6/user/search/page";
 		$config['total_rows'] = $total_rows;
 		$config['per_page'] = $per_page;
 		$config['first_link'] = '首页'; // 第一页显示

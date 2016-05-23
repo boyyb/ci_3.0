@@ -31,10 +31,18 @@ class News extends CI_Controller {
     }
 
     public function nlist(){
+        $flag = 0;
         if(isset($_POST['search']) && !empty($_POST['search'])){
             $keyword = $_POST['search'];
             $this -> db -> like('title',$keyword)
                         -> or_like('content',$keyword);
+            $flag = 1;
+        }
+        if(isset($_GET['search_time']) && !empty($_GET['search_time'])){
+            $t_keyword = strtotime($_GET['search_time']);
+            $t_end = $t_keyword + 86400;
+            $this -> db -> where(array('createtime>='=>$t_keyword,'createtime<='=>$t_end));
+            $flag = 1;
         }
         $data = $this -> db -> get('news') -> result_array();
         //对关键字进行高亮处理
@@ -43,7 +51,6 @@ class News extends CI_Controller {
                 $replacement = '<span style="background:greenyellow">'.$keyword.'</span>';
                 $data[$k]['title'] = preg_replace("/$keyword/",$replacement,$v['title']);
                 $data[$k]['content'] = preg_replace("/$keyword/",$replacement,$v['content']);
-
             }
         }
         //对结果进行排序，时间最近的在最前面(正常录入无需此步)
@@ -63,9 +70,8 @@ class News extends CI_Controller {
             //不是当月的数据按月进行分组
             $mdata[date('Y-m',$v['createtime'])][] = $v;
         }
-
         //var_dump($mdata);die;
-        $this -> load -> view('admin/list',array('ddata'=>$ddata,'mdata'=>$mdata));
+        $this -> load -> view('admin/list',array('ddata'=>$ddata,'mdata'=>$mdata,'flag'=>$flag));
     }
 
 
