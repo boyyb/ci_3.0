@@ -43,8 +43,14 @@
 <a href="add">添加</a>
 <form id="form">
     <div class="search">
-        <input class="search_input" id="search_input" name="search" placeholder="请输入搜索内容" type="text">
+        <input class="search_input" id="search_input" name="search" placeholder="请输入搜索标题或内容" type="text">
         <input class="search_btn" id="search_btn" type="button">
+    </div>
+</form>
+<form id="form" action="nlist" method="get">
+    <div class="search">
+        <input class="search_input" id="search_input1" name="search_time" placeholder="请输入搜索日期(xxxx-xx-xx)" type="text">
+        <input class="search_btn" id="search_btn1" type="submit" value="">
     </div>
 </form>
 <table>
@@ -66,11 +72,11 @@
             </tr>
     <?php }}?>
     <?php foreach($mdata as $key => $value){?>
-        <tr class="parent" id="row_<?php echo $key;?>">
+        <tr class="parent <?php if($flag==0){ ?>selected<?php }?>" id="row_<?php echo $key;?>">
             <td colspan="4"><?php echo $key;?></td>
         </tr>
         <?php foreach($value as $k=>$v){?>
-            <tr class="child_row_<?php echo $key;?>">
+            <tr class="child_row_<?php echo $key;?>" <?php if($flag==0){ ?>style="display:none;"<?php }?>>
                 <td><?php echo $k+1;?></td>
                 <td><?php echo $v['title'];?></td>
                 <td><?php echo $v['content'];?></td>
