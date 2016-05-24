@@ -57,13 +57,13 @@ header("Content-type: text/html; charset=utf-8");
 </head>
 <body style="height:100%;width:100%;overflow:hidden;border:none;">
 <h3 style="text-align:center">用户登录</h3><hr/>
-<div id="win" class="easyui-window" title="Login" style="width:400px;height:200px;z-index:100;">
+<div id="win" class="easyui-window" title="用户登录" style="width:400px;height:200px;z-index:100;">
 	<form action="login" method="post" id="form">
 		用户名：<input type="text" name="name" id="name"/><span id="msg" style="color:red"></span><br/>
 		密码：<input type="password" name="password" id="password"/><br/>
-		验证码：<input type="text" name="vcode" id="vcode"/>
+		验证码：<input type="text" name="vcode" id="vcode" style="vertical-align:middle"/>
 		<img src="http://localhost/CI-3.0.6/user/vcode" onclick=this.src='http://localhost/CI-3.0.6/user/vcode?a='+Math.random()
-			 id='code' title="点击刷新"/><br/>
+			 id='code' title="点击刷新" style="vertical-align:middle"/><br/>
 		<input type="submit" value="登录" />
 		<div style="padding:5px;text-align:center;">
 			<a href="#" class="easyui-linkbutton" icon="icon-ok">登陆</a>
