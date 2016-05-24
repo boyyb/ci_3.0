@@ -18,12 +18,18 @@ header("Content-type: text/html; charset=utf-8");
 	<link rel="stylesheet" type="text/css" href="/CI-3.0.6/Public/jquery-easyui-1.4.5/demo/demo.css">
 	<script type="text/javascript" src="/CI-3.0.6/Public/jquery-easyui-1.4.5/jquery.min.js"></script>
 	<script type="text/javascript" src="/CI-3.0.6/Public/jquery-easyui-1.4.5/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="/CI-3.0.6/Public/jquery-easyui-1.4.5/plugins/jquery.window.js"></script>
 	<script>
 		$(document).ready(function(){
 			$('#win').window('open').window({
 				collapsible:true,
 				minimizable:false,
 				maximizable:false
+			});
+			$('#win').window({
+				onBeforeClose:function(){
+					$('.window-mask').css('display','none');
+				}
 			});
 			$('#name').blur(function(){
 				//ajax请求用户数据
@@ -45,12 +51,13 @@ header("Content-type: text/html; charset=utf-8");
 			$('#name').focusout(function(){
 				$(this).attr('style','');
 			});
+
 		});
 	</script>
 </head>
 <body style="height:100%;width:100%;overflow:hidden;border:none;">
 <h3 style="text-align:center">用户登录</h3><hr/>
-<div id="win" class="easyui-window" title="Login" style="width:400px;height:200px;">
+<div id="win" class="easyui-window" title="Login" style="width:400px;height:200px;z-index:100;">
 	<form action="login" method="post" id="form">
 		用户名：<input type="text" name="name" id="name"/><span id="msg" style="color:red"></span><br/>
 		密码：<input type="password" name="password" id="password"/><br/>
@@ -64,5 +71,6 @@ header("Content-type: text/html; charset=utf-8");
 		</div>
 	</form>
 </div>
+<div style="width: 100%; height: 100%; display: block; z-index: 10;" class="window-mask"></div>
 </body>
 </html>
