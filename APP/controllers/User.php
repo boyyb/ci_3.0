@@ -225,27 +225,27 @@ class User extends CI_Controller {
 	}
 	//显示登录页面
 	public function login(){
-		$this -> load -> view('login');
-	}
-	//验证登录
-	public function checkLogin(){
-		$this->load->library('session');
-		$name = $_POST['name'];
-		$password = $_POST['password'];
-		echo $code1 = strtolower($this->session->userdata('code'));
-		echo $code2 = $_POST['vcode'];
-		if(strtolower($code1) == strtolower($code2) && !empty($code1)) {
-			$flag = $this -> db -> where(array('name'=>$name,'password'=>$password))
-								-> count_all_results('admin');
-			if($flag){
-				redirect('user/show');
+		//验证登录
+		if(isset($_POST) && !empty($_POST)){
+			$this->load->library('session');
+			$name = $_POST['name'];
+			$password = $_POST['password'];
+			echo $code1 = strtolower($this->session->userdata('code'));
+			echo $code2 = $_POST['vcode'];
+			if(strtolower($code1) == strtolower($code2) && !empty($code1)) {
+				$flag = $this -> db -> where(array('name'=>$name,'password'=>$password))
+						-> count_all_results('admin');
+				if($flag){
+					redirect('user/show');
+				}else{
+					echo '用户密码错误！';
+				}
 			}else{
-				$this -> load -> view('login',array('userinfo'=>'用户名或密码错误！'));
+				echo '验证码不正确！';
 			}
-		}else{
-			$this -> load -> view('login',array('codeinfo'=>'验证码不正确！'));
 		}
-
+		//登陆页面
+		$this -> load -> view('login');
 	}
 
 	public function notice(){
@@ -254,8 +254,11 @@ class User extends CI_Controller {
 		$flag = $this -> db -> where(array('name'=>$name)) -> count_all_results('admin');
 		if($flag == 0){
 			echo '用户名不存在!';
+			return;
 		}
 	}
+	
+
 }
 
 

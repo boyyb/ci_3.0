@@ -22,7 +22,7 @@
         }
     </style>
     <!--   引入jQuery -->
-    <script src="http://www.codefans.net/ajaxjs/jquery1.3.2.js" type="text/javascript"></script>
+    <script src="/CI-3.0.6/Public/js/jquery-2.2.4.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function(){
             $('tr.parent').click(function(){   // 获取所谓的父行并触发点击事件

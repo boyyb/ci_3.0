@@ -68,7 +68,7 @@ class CI_Captcha
 			$angle = rand(-5,5);
 			$x = floor($this->width / $this->codeNum) * $i + 2;
 			$y = rand(20, $this->height - 5);
-			$fontfile = 'C:\Windows\Fonts\msyh.ttf';
+			$fontfile = 'C:/Windows/Fonts/msyh.ttc';
 			$text = $this->code{$i};
 			imagettftext ($this->im,$size,$angle,$x,$y,$color,$fontfile,$text);
 		}
