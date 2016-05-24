@@ -47,10 +47,10 @@
         <input class="search_btn" id="search_btn" type="button">
     </div>
 </form>
-<form id="form" action="nlist" method="get">
+<form action="nlist" method="get">
     <div class="search">
-        <input class="search_input" id="search_input1" name="search_time" placeholder="请输入搜索日期(xxxx-xx-xx)" type="text">
-        <input class="search_btn" id="search_btn1" type="submit" value="">
+        <input class="search_input" name="search_time" placeholder="请输入搜索日期(xxxx-xx-xx)" type="text">
+        <input class="search_btn"  type="submit" value="">
     </div>
 </form>
 <table>

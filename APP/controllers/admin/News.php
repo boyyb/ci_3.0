@@ -51,7 +51,6 @@ class News extends CI_Controller {
                 $replacement = '<span style="background:greenyellow">'.$keyword.'</span>';
                 $data[$k]['title'] = preg_replace("/$keyword/",$replacement,$v['title']);
                 $data[$k]['content'] = preg_replace("/$keyword/",$replacement,$v['content']);
-
             }
         }
         //对结果进行排序，时间最近的在最前面(正常录入无需此步)
@@ -71,7 +70,6 @@ class News extends CI_Controller {
             //不是当月的数据按月进行分组
             $mdata[date('Y-m',$v['createtime'])][] = $v;
         }
-
         //var_dump($mdata);die;
         $this -> load -> view('admin/list',array('ddata'=>$ddata,'mdata'=>$mdata,'flag'=>$flag));
     }

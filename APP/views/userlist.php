@@ -7,6 +7,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>用户信息</title>
+	<link type="text/css" href="/CI-3.0.6/Public/css/style.css" rel="stylesheet"/>
 	<style>
 		#table{
 			width:500px;
@@ -36,13 +37,12 @@
 	</style>
 </head>
 <body>
-
-
 <h3>用户信息</h3>
-<form action="/CI-3.0.6/user/search" method="get">
-	姓名：<input type="text" name="search"/>
-	<input type="submit" value="搜索"/>
-</form>
+<form id="form" method="get" action="/CI-3.0.6/user/search">
+	<div class="search">
+		<input class="search_input" id="search_input" name="search" placeholder="请输入搜索姓名" type="text">
+		<input class="search_btn" id="search_btn" type="submit" value="">
+	</div>
 
 <table  id="table" cellspacing="0" >
 <tr>
