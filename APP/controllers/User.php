@@ -5,7 +5,8 @@ class User extends CI_Controller {
 	//构造函数初始化数据模型
 	public function __construct(){
 		parent :: __construct();//静态用父类构造方法
-		$this -> load -> model('admin_model');//实例化用户模型
+		//$this -> load -> model('admin_model');//实例化用户模型
+		$this -> load ->database();//直接连接数据库，利用配置的参数
 		$this -> load -> helper('url_helper');//加载url_helper中的辅助函数
 	}
 	
@@ -84,9 +85,10 @@ class User extends CI_Controller {
 	}
 	//批量插入条用户数据
 	public function test(){
-		for($i=1;$i<=152;$i++){
+		for($i=70001;$i<=150000;$i++){
 			$str = 'abcdefghijklmnkopqrstuvwxyz';
 			$arr['name'] = substr($str,rand(0,strlen($str)-1),1);
+			$arr['name'] .= substr($str,rand(0,strlen($str)-1),1);
 			$arr['name'] .= substr($str,rand(0,strlen($str)-1),1);
 			$arr['name'] .= $i;
 			$arr['gender'] = rand(0,1);
@@ -94,7 +96,8 @@ class User extends CI_Controller {
 			//var_dump($arr);die;
 			$this -> db -> insert('userinfo',$arr);
 		}
-		
+		echo $this -> db -> insert_id();
+		echo PHP_EOL;
 		echo $this -> db -> last_query();
 	}
 
@@ -133,7 +136,7 @@ class User extends CI_Controller {
 	//保存上传图片
 	public function psave(){
 		//处理文件上传
-		$config['upload_path'] = getcwd().'./Public/upload/';
+		$config['upload_path'] = getcwd().'/Public/upload/';//这个路径需要服务器的绝对路径,getcwd()获取当前目录的绝对路径
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$config['max_size'] = '0'; 
 		$config['max_width'] = '1600';

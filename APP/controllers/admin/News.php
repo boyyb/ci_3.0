@@ -44,7 +44,7 @@ class News extends CI_Controller {
             $this -> db -> where(array('createtime>='=>$t_keyword,'createtime<='=>$t_end));
             $flag = 1;
         }
-        $data = $this -> db -> get('news') -> result_array();
+        $data = $this -> db -> order_by('createtime','DESC') -> get('news') -> result_array();
         //对关键字进行高亮处理
         if(isset($keyword) && !empty($data)){
             foreach($data as $k=>$v){
@@ -53,11 +53,12 @@ class News extends CI_Controller {
                 $data[$k]['content'] = preg_replace("/$keyword/",$replacement,$v['content']);
             }
         }
-        //对结果进行排序，时间最近的在最前面(正常录入无需此步)
-        usort($data, function($a, $b) {
+        //利用数据库查询时就排序可以忽略此段代码
+        //对结果进行排序，时间最近的在最前面(正常录入无需此步)，二维数组排序
+        /*usort($data, function($a, $b) {
             if ($a['createtime'] == $b['createtime']) return 0;
             return $a['createtime'] > $b['createtime'] ? -1 : 1;
-        });
+        });*/
         //天分组和月分组的空数组
         $ddata = array();
         $mdata = array();

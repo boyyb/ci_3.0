@@ -27,7 +27,7 @@
         $(function(){
             $('tr.parent').click(function(){   // 获取所谓的父行并触发点击事件
                 $(this).toggleClass("selected")   // 给parent类添加或删除selected类
-                       .siblings('.child_'+this.id) //获得对应类名的兄弟节点(需要被隐藏的行)
+                       .siblings('.child_'+this.id) //获得对应类名的兄弟节点(需要被隐藏的行)对象
                        .toggle();  // 隐藏/显示所谓的子行，toggle()方法切换元素的可见状态。
                 
             });
@@ -49,7 +49,7 @@
 </form>
 <form action="nlist" method="get">
     <div class="search">
-        <input class="search_input" name="search_time" placeholder="请输入搜索日期(xxxx-xx-xx)" type="text">
+        <input class="search_input" name="search_time" placeholder="格式：20160520" type="text">
         <input class="search_btn"  type="submit" value="">
     </div>
 </form>
