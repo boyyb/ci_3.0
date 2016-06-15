@@ -22,6 +22,8 @@
 
 
 <h3>管理员信息</h3>
+<p>当前管理员：<?php echo $this->session->username;?></p>
+<a href="logout">注销</a>
 <table  id="table" cellspacing="0" >
 <tr>
 	<th>ID</th>

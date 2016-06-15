@@ -13,6 +13,13 @@ class User extends CI_Controller {
 	//显示管理员信息
 	public function show()
 	{
+		var_dump($_COOKIE);die;
+		//判断是否已登录
+		$this -> load -> library('session');
+		if(empty($this->session->username) && empty($_COOKIE['nologin'])){
+			echo '<script>alert("请先登录!");window.location="login";</script>';
+		}
+
 		$query = $this -> db -> get('admin');//查询admin表,返回结果
 		$data = $query -> result_array();//结果集对象转换为数组，row_array()是转换第一个
 		//var_dump($data);die;
@@ -25,11 +32,11 @@ class User extends CI_Controller {
 				default:break;
 			}
 		}
-		echo '客户端ip：',$_SERVER['REMOTE_ADDR'],'<br/>';
+		/*echo '客户端ip：',$_SERVER['REMOTE_ADDR'],'<br/>';
 		echo '服务器ip：',$_SERVER['SERVER_ADDR'],'<br/>';
 		echo uri_string(),'<br/>'; //测试辅助函数-url_helper中的一个函数
 		echo current_url(),'<br/>';
-		echo site_url();
+		echo site_url();*/
  		$this -> load -> view('show',array("data"=>$data));//传送数据到模板
 		$this->output->enable_profiler(TRUE);//启动分析器
 	}
@@ -222,7 +229,7 @@ class User extends CI_Controller {
 		$this->load->library('session');
 		$this->load->library('captcha');//加载自定义的类库
 		$code = $this-> captcha -> getCaptcha();
-		$this -> session -> code = $code;//将验证码传递给session
+		$this -> session -> vcode = $code;//将验证码传递给session
 		$this -> captcha -> showImg();//显示验证码图片
 
 	}
@@ -233,12 +240,18 @@ class User extends CI_Controller {
 			$this->load->library('session');
 			$name = $_POST['name'];
 			$password = $_POST['password'];
-			echo $code1 = strtolower($this->session->userdata('code'));
+			$nologin = isset($_POST['nologin']) ? $_POST['nologin'] : 0;
+			echo $code1 = strtolower($this->session->vcode);
 			echo $code2 = $_POST['vcode'];
 			if(strtolower($code1) == strtolower($code2) && !empty($code1)) {
 				$flag = $this -> db -> where(array('name'=>$name,'password'=>$password))
 						-> count_all_results('admin');
 				if($flag){
+					$this -> session -> username = $name;
+					if($nologin == 1){
+						setcookie('nologin','1',time()+3600);
+						setcookie('username',$name,time()+3600);
+					}
 					redirect('user/show');
 				}else{
 					echo '用户密码错误！';
@@ -261,6 +274,18 @@ class User extends CI_Controller {
 		}
 	}
 
+	public function logout(){
+		$this->load->library('session');
+		$this->load->helper('url');
+		$this->session->unset_userdata('code');
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('vcode');
+		redirect('user/login');
+	}
+
+	public function aaa(){
+		var_dump($_COOKIE);
+	}
 
 }
 

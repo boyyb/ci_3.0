@@ -7,6 +7,7 @@ class News extends CI_Controller {
         parent :: __construct();//静态用父类构造方法
         $this -> load -> model('admin_model');//实例化用户模型
         $this -> load -> helper('url_helper');//加载url_helper中的辅助函数
+        date_default_timezone_set('PRC');
     }
 
     public function test(){
@@ -18,6 +19,7 @@ class News extends CI_Controller {
     }
 
     public function save(){
+
         $_POST['createtime'] = $_POST['createtime'] ? strtotime($_POST['createtime']) : time();
         //$_POST['createtime'] = time();
         $flag = $this -> db -> insert('news',$_POST);

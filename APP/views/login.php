@@ -62,9 +62,10 @@ header("Content-type: text/html; charset=utf-8");
 		用户名：<input type="text" name="name" id="name"/><span id="msg" style="color:red"></span><br/>
 		密码：<input type="password" name="password" id="password"/><br/>
 		验证码：<input type="text" name="vcode" id="vcode" style="vertical-align:middle"/>
-		<img src="http://localhost/CI-3.0.6/user/vcode" onclick=this.src='http://localhost/CI-3.0.6/user/vcode?a='+Math.random()
+		<img src="/CI-3.0.6/user/vcode" onclick=this.src='/CI-3.0.6/user/vcode?a='+Math.random()
 			 id='code' title="点击刷新" style="vertical-align:middle"/><br/>
-		<input type="submit" value="登录" />
+		<input type="submit" value="登录" /><br/>
+		<input type="checkbox" name="nologin" value="1">一周内免登录
 		<div style="padding:5px;text-align:center;">
 			<a href="#" class="easyui-linkbutton" icon="icon-ok">登陆</a>
 			<!--<a href="#" class="easyui-linkbutton" icon="icon-cancel">Cancel</a>-->
