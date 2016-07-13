@@ -13,7 +13,6 @@ class User extends CI_Controller {
 	//显示管理员信息
 	public function show()
 	{
-		var_dump($_COOKIE);die;
 		//判断是否已登录
 		$this -> load -> library('session');
 		if(empty($this->session->username) && empty($_COOKIE['nologin'])){
@@ -22,7 +21,6 @@ class User extends CI_Controller {
 
 		$query = $this -> db -> get('admin');//查询admin表,返回结果
 		$data = $query -> result_array();//结果集对象转换为数组，row_array()是转换第一个
-		//var_dump($data);die;
 		//转换等级为人类易读方式
 		foreach($data as $k=>$v){
 			switch($v['level']){
