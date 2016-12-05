@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Test extends CI_Controller {
+class test extends CI_Controller {
 
 
 	public function index()
@@ -30,6 +30,26 @@ class Test extends CI_Controller {
 			echo json_encode($data);
 		}
 
+	}
+
+	//同时获取mysql和mongodb数据库的数据
+	public function getDataByTwoDb(){
+		$m = new MongoClient();    // 连接到mongodb
+		$db = $m->csh;            // 选择一个数据库
+		$collection = $db->message;   // 选择集合
+
+		$cursor = $collection->find()->sort(array("addtime"=>-1));//按照添加时间降序排序
+		$str = '';
+		foreach ($cursor as $id => $value) {
+			echo json_encode($value);
+		}
+
+
+		//echo $str; //调用函数输出结果
+	}
+
+	public function test1(){
+		echo "Im not HMVC";
 	}
 }
 

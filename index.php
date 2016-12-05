@@ -129,7 +129,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$view_folder = '';
+	$view_folder = ''; //设置视图目录路径，默认为APP/views
 
 
 /*

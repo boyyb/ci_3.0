@@ -55,4 +55,4 @@ $route['get/:any'] = 'user/get';// 测试用
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['loadmodules/(:any)']="loadmodules/index/";
+//$route['loadmodules/(:any)']="loadmodules/index/";
