@@ -129,7 +129,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$view_folder = ''; //设置视图目录路径，默认为APP/views
+	$view_folder = ''; //设置视图目录路径，空就是默认为APP/views
 
 
 /*
@@ -227,13 +227,13 @@ switch (ENVIRONMENT)
 	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 
 	// Path to the system directory
-	define('BASEPATH', $system_path);
+	define('BASEPATH', $system_path); //系统目录路径
 
 	// Path to the front controller (this file) directory
 	//define('FCPATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
 
 	// Name of the "system" directory
-	define('SYSDIR', basename(BASEPATH));
+	define('SYSDIR', basename(BASEPATH)); //系统目录名称
 
 	// The path to the "application" directory
 	if (is_dir($application_folder))
@@ -271,7 +271,7 @@ switch (ENVIRONMENT)
 	// The path to the "views" directory
 	if ( ! isset($view_folder[0]) && is_dir(APPPATH.'views'.DIRECTORY_SEPARATOR))
 	{
-		$view_folder = APPPATH.'views';
+		$view_folder = APPPATH.'views'; //为空的话 默认是应用目下的views目录
 	}
 	elseif (is_dir($view_folder))
 	{
@@ -312,4 +312,4 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
-require_once BASEPATH.'core/CodeIgniter.php';
+require_once BASEPATH.'core/CodeIgniter.php'; //引入ci核心文件
