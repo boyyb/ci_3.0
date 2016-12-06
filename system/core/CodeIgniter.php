@@ -67,19 +67,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		require_once(APPPATH.'config/'.ENVIRONMENT.'/constants.php');
 	}
 
-	require_once(APPPATH.'config/constants.php');
+	require_once(APPPATH.'config/constants.php'); //加载应用配置目录下的框架常量
 
 /*
  * ------------------------------------------------------
  *  Load the global functions
  * ------------------------------------------------------
  */
-	require_once(BASEPATH.'core/Common.php');
+	require_once(BASEPATH.'core/Common.php'); //加载系统目录下的全局函数
 
 
 /*
  * ------------------------------------------------------
  * Security procedures
+ * 如果php版本低于5.4 则关闭某些魔术转义
  * ------------------------------------------------------
  */
 
@@ -129,7 +130,7 @@ if ( ! is_php('5.4'))
 
 /*
  * ------------------------------------------------------
- *  Define a custom error handler so we can log PHP errors
+ *  Define a custom error handler so we can log PHP errors     错误记录相关，用户自定义错误处理
  * ------------------------------------------------------
  */
 	set_error_handler('_error_handler');
@@ -138,7 +139,7 @@ if ( ! is_php('5.4'))
 
 /*
  * ------------------------------------------------------
- *  Set the subclass_prefix
+ *  Set the subclass_prefix  设置类前缀
  * ------------------------------------------------------
  *
  * Normally the "subclass_prefix" is set in the config file.
@@ -159,7 +160,7 @@ if ( ! is_php('5.4'))
 
 /*
  * ------------------------------------------------------
- *  Should we use a Composer autoloader?
+ *  Should we use a Composer autoloader?       组件自动加载
  * ------------------------------------------------------
  */
 	if ($composer_autoload = config_item('composer_autoload'))
@@ -182,7 +183,7 @@ if ( ! is_php('5.4'))
 
 /*
  * ------------------------------------------------------
- *  Start the timer... tick tock tick tock...
+ *  Start the timer... tick tock tick tock...  //时间记录
  * ------------------------------------------------------
  */
 	$BM =& load_class('Benchmark', 'core');

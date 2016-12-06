@@ -118,7 +118,7 @@ $config['subclass_prefix'] = 'MY_';
 
 /*
 |--------------------------------------------------------------------------
-| Composer auto-loading
+| Composer auto-loading  //组件加载
 |--------------------------------------------------------------------------
 |
 | Enabling this setting will tell CodeIgniter to look for a Composer
