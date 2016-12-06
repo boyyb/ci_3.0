@@ -186,27 +186,27 @@ if ( ! is_php('5.4'))
  *  Start the timer... tick tock tick tock...  //时间记录
  * ------------------------------------------------------
  */
-	$BM =& load_class('Benchmark', 'core');
+	$BM =& load_class('Benchmark', 'core'); //加载基准测试类文件
 	$BM->mark('total_execution_time_start');
 	$BM->mark('loading_time:_base_classes_start');
 
 /*
  * ------------------------------------------------------
- *  Instantiate the hooks class
+ *  Instantiate the hooks class //加载并实例化钩子类
  * ------------------------------------------------------
  */
 	$EXT =& load_class('Hooks', 'core');
 
 /*
  * ------------------------------------------------------
- *  Is there a "pre_system" hook?
+ *  Is there a "pre_system" hook? //是否存在对应钩子，存在则加载
  * ------------------------------------------------------
  */
 	$EXT->call_hook('pre_system');
 
 /*
  * ------------------------------------------------------
- *  Instantiate the config class
+ *  Instantiate the config class  加载实例化配置类
  * ------------------------------------------------------
  *
  * Note: It is important that Config is loaded first as
@@ -278,7 +278,7 @@ if ( ! is_php('5.4'))
 
 /*
  * ------------------------------------------------------
- *  Load compatibility features
+ *  Load compatibility features  加载兼容性功能
  * ------------------------------------------------------
  */
 
